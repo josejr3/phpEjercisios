@@ -16,12 +16,6 @@
     <form action="register.php" method="post" class="form-example">
         <div class="form-example">
             <label for="user">Nombre de usuario: </label>
-                <?php
-                     if (($_SESSION['error'])!="") {
-                        echo "<p style='color:red'>".$_SESSION['error']."</p>";
-                        
-                     }
-                     ?>
             <input type="text" name="user" id="user" />
         </div>
    
@@ -40,6 +34,12 @@
         <div class="form-example">
             <input type="submit" value="Registrarse" />
         </div>
+         <?php
+                if (($_SESSION['error'])!="") {
+                    echo "<p style='color:red'>".$_SESSION['error']."</p>";
+                    session_unset();
+                }
+            ?>
     </form>
 
 </body>

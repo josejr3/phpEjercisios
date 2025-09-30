@@ -2,25 +2,29 @@
 require 'conexion.php';
 session_start();
 $_SESSION['error']="";
-$user=isset($_POST['user']);
-$pasword=isset($_POST['pasword']);
-$pasword2=isset($_POST['pasword2']);
-$hash=password_hash($pasword,PASSWORD_DEFAULT);
-$email=isset($_POST['email']);
-
-if (!empty($pasword)) {
-    if ($pasword === $pasword2 ) {
-        print_r($_SESSION['user']." ".$_SESSION['pasword']);
+$_SESSION['user']=$_POST['user']??'';
+$_SESSION['pasword']=$_POST['pasword']??'';
+$_SESSION['pasword2']=$_POST['pasword2']??'';
+$_SESSION['email']=$_POST['email']??'';
+$hash=password_hash($_SESSION['pasword'],PASSWORD_BCRYPT);
+//comprobaciones
+$_SESSION['error'] .= empty($_SESSION['pasword'])? "La contraseña es obligatoria" : '';
+$_SESSION['error'] .= empty($_SESSION['pasword2'])? "La confirmación de contraseña es obligatoria" : '';
+$_SESSION['error'] .= empty($_SESSION['email'])? "El email es obligatorio" : '';
+$_SESSION['error'] .= empty($_SESSION['user'])? "El nombre de usuario es obligatorio" : '';
+$_SESSION['error'] .= $_SESSION['pasword']!=$_SESSION['pasword2']?"Las contraseñas no coinciden":'';
+if ($_SESSION['error']==="") {
         $smt =$conn->prepare("INSERT INTO usuarios (username,pasword,email) values(:username,:pasword,:email)");
-        $smt->bindParam('username',$user);
+        $smt->bindParam('username',$_SESSION['user']);
         $smt->bindParam('pasword',$hash);
-        $smt->bindParam('email',$email);
+        $smt->bindParam('email',$_SESSION['email']);
         $smt->execute();
+
     }else{
-        $_SESSION['error']="Las contraseñas son diferentes";
-        //header('Location: index.php');
+        header("Location: index.php");
     }
-}
+   
+
 
 
 
