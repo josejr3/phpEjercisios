@@ -21,7 +21,7 @@ if ($_SESSION['error']==="") {
         $smt->execute();
 
     }else{
-        header("Location: index.php");
+     
     }
    
 
