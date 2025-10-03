@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+    
     <form action="register.php" method="post" class="form-example">
         <div class="form-example">
             <label for="user">Nombre de usuario: </label>
@@ -32,14 +32,15 @@
             <input type="text" name="pasword2" id="pasword2" />
         </div>
         <div class="form-example">
-            <input type="submit" value="Registrarse" />
+            <input type="submit" value="Registrarse" name="enviar"/>
         </div>
          <?php
-                if (($_SESSION['error'])!="") {
-                    echo "<p style='color:red'>".$_SESSION['error']."</p>";
-                    session_unset();
-                }
-            ?>
+          if(isset($_SESSION['error'])){
+            echo "<p style='color:red'>".$_SESSION['error']."</p>";
+            $_SESSION['error']=null;
+          }
+        ?>
+        
     </form>
 
 </body>
