@@ -17,11 +17,23 @@
     <form action="register.php" method="post" class="form">
         <div class="formDiv">
             <label for="user">Nombre de usuario: </label>
+            <?php
+                if(isset($_SESSION['error'])){
+                   echo "<p style='color:red'>".$errorUser."</p>";
+                 $_SESSION['error']=null;
+               }
+            ?>
             <input type="text" name="user" id="user" />
         </div>
    
         <div class="formDiv">
             <label for="email">Email: </label>
+            <?php
+                if(isset($_SESSION['error'])){
+                   echo "<p style='color:red'>".$errorEmail."</p>";
+                 $_SESSION['error']=null;
+               }
+            ?>
             <input type="email" name="email" id="email" />
         </div>
         <div class="formDiv">
