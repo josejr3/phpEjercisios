@@ -1,5 +1,8 @@
-<?php  
-    require 'register.php';
+<?php
+    session_start();  
+   if (isset($_SESSION['erroresLoging'])) {
+    $errores=$_SESSION['erroresLoging'];
+   }
 ?>
 
 <!DOCTYPE html>
@@ -14,45 +17,29 @@
 
 <body>
     
-    <form action="register.php" method="post" class="form">
-        <div class="formDiv">
-            <label for="user">Nombre de usuario: </label>
-            <?php
-                if(isset($_SESSION['error'])){
-                   echo "<p style='color:red'>".$errorUser."</p>";
-                 $_SESSION['error']=null;
-               }
-            ?>
-            <input type="text" name="user" id="user" />
-        </div>
-   
+    <form action="loging_logic.php" method="post" class="form">
+        <h2>Iniciar sesión</h2>
         <div class="formDiv">
             <label for="email">Email: </label>
-            <?php
-                if(isset($_SESSION['error'])){
-                   echo "<p style='color:red'>".$errorEmail."</p>";
-                 $_SESSION['error']=null;
-               }
-            ?>
-            <input type="email" name="email" id="email" />
+            <p class="error"><?php echo $errores['errorEmail'] ?? '&nbsp;'; ?></p>
+            <input type="text" name="email" id="email" 
+                value="<?php echo isset($_SESSION['email']) && !isset($errores['errorEmail']) ? $_SESSION['email'] : ''; ?>"/>
         </div>
         <div class="formDiv">
-            <label for="pasword">Contraseña: </label>
-            <input type="text" name="pasword" id="pasword" />
-        </div>
+            <label for="password">Contraseña: </label>             
+            <input type="text" name="password" id="password" />
+        </div>       
         <div class="formDiv">
-            <label for="pasword2">Confirmar contraseña: </label>
-            <input type="text" name="pasword2" id="pasword2" />
+            <button type="submit" value="Login" name="enviar">Iniciar sesión</button>
         </div>
-        <div class="formDiv">
-            <input type="submit" value="Registrarse" name="enviar"/>
-        </div>
-         <?php
-          if(isset($_SESSION['error'])){
-            echo "<p style='color:red'>".$_SESSION['error']."</p>";
-            $_SESSION['error']=null;
-          }
-        ?>
+      <?php
+        if (isset($_SESSION['erroresLoging'])) {
+         $_SESSION['erroresLoging']=null;
+        }
+      ?>
+       <div class="form-footer">
+        ¿No tienes cuenta? <a href="register_form.php">Regístrate</a>
+    </div>
         
     </form>
 
