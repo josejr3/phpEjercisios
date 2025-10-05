@@ -3,8 +3,8 @@
 $servername = "localhost";
 
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=prueba", 'root', '');
-  // set the PDO error mode to exception
+  $conn = new PDO("mysql:host=$servername;dbname=biblioteca_de_juegos", 'root', '');
+  
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  
 } catch(PDOException $e) {

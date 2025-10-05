@@ -11,13 +11,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
 
 </head>
 
 <body>
     
-    <form action="register_logic.php" method="post" class="form">
+    <form action="../logic/register_logic.php" method="post" class="form">
         <h2>Registro</h2>
         <div class="formDiv">
             <label for="user">Nombre de usuario: </label>
@@ -51,7 +51,7 @@
         }
       ?>
       <div class="form-footer">
-        ¿Ya tienes cuenta? <a href="index.php">Inicia sesión</a>
+        ¿Ya tienes cuenta? <a href="../index.php">Inicia sesión</a>
       </div>
         
     </form>

@@ -33,9 +33,9 @@ if (!empty($_POST)) {
 
     if (count($errores)===0) {
         $hash=password_hash($_SESSION['password'],PASSWORD_BCRYPT);
-        $smt =$conn->prepare("INSERT INTO usuarios (username,password,email) values(:username,:password,:email)");
+        $smt =$conn->prepare("INSERT INTO usuarios (username,password_hash,email) values(:username,:password_hash,:email)");
         $smt->bindParam('username',$_SESSION['user']);
-        $smt->bindParam('password',$hash);
+        $smt->bindParam('password_hash',$hash);
         $smt->bindParam('email',$_SESSION['email']);
         try {
             $smt->execute();
@@ -53,7 +53,7 @@ if (!empty($_POST)) {
     }
     if(count($errores)>0){ 
         $_SESSION['errores']=$errores;
-        header('Location: register_form.php'); 
+        header('Location: ../form/register_form.php'); 
     }else{
         $_SESSION['logged'] = true;
        // header("location: dashboard.php");

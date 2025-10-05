@@ -17,12 +17,12 @@ if (!empty($_POST)) {
         $errores['errorEmail'] = "El email no puede estar vacío  </br>";
 
     if (count($errores)===0) {
-        $smt =$conn->prepare("SELECT password FROM usuarios WHERE email=:email");
+        $smt =$conn->prepare("SELECT id_usuario, username, password_hash FROM usuarios WHERE email=:email");
         $smt->bindParam('email',$_SESSION['email']);
         try {
             $smt->execute();
-            $passwordDB=$smt->fetch(PDO::FETCH_ASSOC);
-            if ($passwordDB && password_verify($_SESSION['password'], $passwordDB['password'])) {
+            $userData=$smt->fetch(PDO::FETCH_ASSOC);
+            if ($userData && password_verify($_SESSION['password'], $userData['password_hash'])) {
                 $_SESSION['logged'] = true;
                 header("location: dashboard.php");
             } else {
@@ -36,7 +36,7 @@ if (!empty($_POST)) {
     }
     if(count($errores)>0){ 
         $_SESSION['erroresLoging']=$errores;
-        header('Location: index.php'); 
+        header('Location: ../index.php'); 
     }
    
 }

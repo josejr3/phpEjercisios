@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['logged']) === true) {
-    header("location: index.php");
+    header("location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ if (!isset($_SESSION['logged']) === true) {
 <head>
     <meta charset="UTF-8">
     <title>Agregar Juego</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
 </head>
 
 <body>
