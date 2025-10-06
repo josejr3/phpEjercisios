@@ -17,20 +17,25 @@ if (!empty($_POST)) {
         $errores['errorEmail'] = "El email no puede estar vacío  </br>";
 
     if (count($errores)===0) {
-        $smt =$conn->prepare("SELECT id_usuario, username, password_hash FROM usuarios WHERE email=:email");
+       $smt =$conn->prepare("SELECT id_usuario, username, password_hash FROM usuarios WHERE email=:email");
         $smt->bindParam('email',$_SESSION['email']);
         try {
             $smt->execute();
             $userData=$smt->fetch(PDO::FETCH_ASSOC);
-            if ($userData && password_verify($_SESSION['password'], $userData['password_hash'])) {
-                $_SESSION['logged'] = true;
-                header("location: dashboard.php");
-            } else {
-                $errores['errorEmail'] = "Email o contraseña incorrectos</br>";
-            }
-        } catch ( PDOException $e) {
+            if ($userData) {
+                if (password_verify($_SESSION['password'], $userData['password_hash'])) {
+                    $_SESSION['logged'] = true;
+                    $_SESSION['user_id'] = $userData['id_usuario'];
+                    $_SESSION['user'] = $userData['username'];
+                    header("location: ../dashboard.php");
+                    exit(); 
+                }else {
+                    $errores['errorEmail'] = "Email o contraseña incorrectos</br>";
+                }
 
-            if ($e->getCode()==23000) $errores['errorEmail'] = "El email no esta registrado</br>";        
+            } else $errores['errorEmail'] = "El email no esta registrado</br>"; 
+        } catch ( PDOException $e) {
+             $errores['BaseDeDatos'] = $e->getMessage();
         }
           
     }

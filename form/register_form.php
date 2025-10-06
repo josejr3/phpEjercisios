@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body class="form-page-body">
     
     <form action="../logic/register_logic.php" method="post" class="form">
         <h2>Registro</h2>

@@ -15,9 +15,9 @@
 
 </head>
 
-<body>
+<body class="form-page-body">
     
-    <form action="loging_logic.php" method="post" class="form">
+    <form action="logic/loging_logic.php" method="post" class="form">
         <h2>Iniciar sesión</h2>
         <div class="formDiv">
             <label for="email">Email: </label>
@@ -38,7 +38,7 @@
         }
       ?>
        <div class="form-footer">
-        ¿No tienes cuenta? <a href="register_form.php">Regístrate</a>
+        ¿No tienes cuenta? <a href="form/register_form.php">Regístrate</a>
     </div>
         
     </form>
