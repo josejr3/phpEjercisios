@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS `juegos` (
   `caratula_imagen` varchar(255) DEFAULT NULL,
   `url_juego` varchar(255) DEFAULT NULL,
   `id_usuario_creador` int(11) NOT NULL,
-  `fecha_subida` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_juego`),
   KEY `id_usuario_creador` (`id_usuario_creador`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -63,7 +62,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `email` varchar(50) NOT NULL,
   `password_hash` varchar(60) NOT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
