@@ -78,8 +78,9 @@ if (isset($_POST['guardar'])) {
             header("Location: ../dashboard.php");
             exit();
         } catch (Exception $e) {
-            $conn->rollBack();
-            $_SESSION['form_errors'] = ['db_error' => 'Error al guardar el juego: ' . $e->getMessage()];
+            $conn->rollBack();    
+            print_r($e->getMessage());
+            die();
             header("Location: ../form/juegos_form.php");
             exit();
         }

@@ -56,7 +56,8 @@ if (!empty($_POST)) {
         header('Location: ../form/register_form.php'); 
     }else{
         $_SESSION['logged'] = true;
-       header("location: dashboard.php");
+
+       header("location: ../index.php");
     }
    
 }

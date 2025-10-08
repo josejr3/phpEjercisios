@@ -9,7 +9,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
 
 $juegos = [];
 try {
-    $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen FROM juegos ORDER BY fecha_subida DESC";
+    $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen FROM juegos";
     $stmt = $conn->query($sql);
     $juegos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
