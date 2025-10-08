@@ -22,12 +22,12 @@ CREATE TABLE IF NOT EXISTS `juegos` (
   KEY `id_usuario_creador` (`id_usuario_creador`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `juegos` (`id_juego`, `titulo`, `descripcion`, `anio_lanzamiento`, `caratula_imagen`, `url_juego`, `id_usuario_creador`, `fecha_subida`) VALUES
-(5, 'Dragon Ball Sparking! Zero', 'DRAGON BALL: Sparking! ZERO lleva a un nuevo nivel el legendario estilo de juego de la serie Budokai Tenkaichi. Aprende a dominar a diversos pppppppppppppppppppppppppppppppppppppppppppppppppppersonajes jugables, cada uno con sus habilidades, transformaciones y técnicas propias. Libera tu espíritu de lucha y pelea en escenarios que se derrumban y reaccionan a tu poder a medida que el combate se recrudece.', '2024', 'uploads/caratula_68e2df12d62d9.jpg', 'https://es.bandainamcoent.eu/dragon-ball/dragon-ball-sparking-zero', 1, '2025-10-05 22:11:46'),
-(6, 'Dragon Ball Sparking! Zero', 'DRAGON BALL: Sparking! ZERO lleva a un nuevo nivel el legendario estilo de juego de lpppppppppppppppppppppppppppAprende a dominar a diversos personajes jugables, cada uno con sus habilidades, transformaciones y técnicas propias. Libera tu espíritu de lucha y pelea en escenarios que se derrumban y reaccionan a tu poder a medida que el combate se recrudece.', '2024', NULL, 'https://es.bandainamcoent.eu/dragon-ball/dragon-ball-sparking-zero', 1, '2025-10-06 00:52:31'),
-(7, 'Cyberpunk 2077', 'Sumérgete en el universo de Cyberpunk: desde la historia original de Cyberpunk 2077 y su fascinante expansión de suspense y espionaje, Phantom Liberty, al premiado anime Cyberpunk: Edgerunners. Hay infinidad de historias por descubrir en la letal megalópolis de Night City.', '2025', 'uploads/caratula_68e30b1b56175.jpg', 'https://www.cyberpunk.net/es/es/', 1, '2025-10-06 01:19:39'),
-(8, 'dfdsf', 'dfewfewaf', '2025', NULL, '', 1, '2025-10-06 01:34:54'),
-(9, 'efew', 'ewfwf', '2021', NULL, '', 2, '2025-10-06 01:36:17');
+INSERT INTO `juegos` (`id_juego`, `titulo`, `descripcion`, `anio_lanzamiento`, `caratula_imagen`, `url_juego`, `id_usuario_creador`) VALUES
+(5, 'Dragon Ball Sparking! Zero', 'DRAGON BALL: Sparking! ZERO lleva a un nuevo nivel el legendario estilo de juego de la serie Budokai Tenkaichi. Aprende a dominar a diversos pppppppppppppppppppppppppppppppppppppppppppppppppppersonajes jugables, cada uno con sus habilidades, transformaciones y técnicas propias. Libera tu espíritu de lucha y pelea en escenarios que se derrumban y reaccionan a tu poder a medida que el combate se recrudece.', '2024', 'uploads/caratula_68e2df12d62d9.jpg', 'https://es.bandainamcoent.eu/dragon-ball/dragon-ball-sparking-zero', 1),
+(6, 'Dragon Ball Sparking! Zero', 'DRAGON BALL: Sparking! ZERO lleva a un nuevo nivel el legendario estilo de juego de lpppppppppppppppppppppppppppAprende a dominar a diversos personajes jugables, cada uno con sus habilidades, transformaciones y técnicas propias. Libera tu espíritu de lucha y pelea en escenarios que se derrumban y reaccionan a tu poder a medida que el combate se recrudece.', '2024', NULL, 'https://es.bandainamcoent.eu/dragon-ball/dragon-ball-sparking-zero', 1),
+(7, 'Cyberpunk 2077', 'Sumérgete en el universo de Cyberpunk: desde la historia original de Cyberpunk 2077 y su fascinante expansión de suspense y espionaje, Phantom Liberty, al premiado anime Cyberpunk: Edgerunners. Hay infinidad de historias por descubrir en la letal megalópolis de Night City.', '2025', 'uploads/caratula_68e30b1b56175.jpg', 'https://www.cyberpunk.net/es/es/', 1),
+(8, 'dfdsf', 'dfewfewaf', '2025', NULL, '', 1),
+(9, 'efew', 'ewfwf', '2021', NULL, '', 2);
 
 CREATE TABLE IF NOT EXISTS `juegos_plataformas` (
   `id_juego` int(11) NOT NULL,
@@ -82,4 +82,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
