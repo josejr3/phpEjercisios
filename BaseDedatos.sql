@@ -52,16 +52,10 @@ CREATE TABLE IF NOT EXISTS `plataformas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `plataformas` (`id_plataforma`, `nombre_plataforma`) VALUES
-(8, 'Nintendo_3ds'),
-(9, 'Nintendo_switch'),
-(10, 'Nintendo_switch2'),
 (1, 'PC'),
-(4, 'PlayStation3'),
-(3, 'PlayStation4'),
-(2, 'PlayStation5'),
-(7, 'Xbox_one'),
-(6, 'Xbox_seriesS'),
-(5, 'Xbox_seriesX');
+(4, 'Xbox'),
+(3, 'Nintendo'),
+(2, 'PlayStation');
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
