@@ -3,6 +3,7 @@
    if (isset($_SESSION['errores'])) {
     $errores=$_SESSION['errores'];
    }
+   require "comprueba.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +15,25 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
 
 </head>
+<script>
+
+  function errores(str) {
+  if (str.length == 0) {
+    document.getElementById("passwordError").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("passwordError").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "comprueba.php?q=" + str, true);
+    xmlhttp.send();
+  }
+}
+
+</script>
 
 <body class="form-page-body">
     
@@ -34,8 +54,14 @@
         </div>
         <div class="formDiv">
             <label for="password">Contraseña: </label>
-               <p class="error"><?php echo $errores['errorPassword'] ?? '&nbsp;'; ?></p>
-            <input type="text" name="password" id="password" />
+                <?php
+                for ($i=0; $i < count($errores) ; $i++) { 
+                    echo("<p style='color: {$colores[$i]}' id='passwordError{$i}' > {$errores[$i]}</p>");
+                }
+
+               ?>
+            
+            <input type="text" name="password" id="password" onkeyup="errores(this.value)" />
         </div>
         <div class="formDiv">
             <label for="password2">Confirmar contraseña: </label>

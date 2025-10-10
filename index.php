@@ -27,7 +27,7 @@
         </div>
         <div class="formDiv">
             <label for="password">Contraseña: </label>             
-            <input type="text" name="password" id="password" />
+            <input type="password" name="password" id="password" />
         </div>       
         <div class="formDiv">
             <button type="submit" value="Login" name="enviar">Iniciar sesión</button>
