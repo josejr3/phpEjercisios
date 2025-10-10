@@ -3,7 +3,6 @@
    if (isset($_SESSION['errores'])) {
     $errores=$_SESSION['errores'];
    }
-   require "comprueba.php";
 ?>
 
 <!DOCTYPE html>
@@ -19,16 +18,17 @@
 
   function errores(str) {
   if (str.length == 0) {
-    document.getElementById("passwordError").innerHTML = "";
+    document.getElementById("password").innerHTML = "";
     return;
   } else {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("passwordError").innerHTML = this.responseText;
+        document.getElementById("password").innerHTML = this.responseText;
       }
     };
-    xmlhttp.open("GET", "comprueba.php?q=" + str, true);
+    xmlhttp.open("GET", "comprueba.php?texto=" + str, true);
+    console.log(str);
     xmlhttp.send();
   }
 }
