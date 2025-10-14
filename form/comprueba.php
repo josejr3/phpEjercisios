@@ -1,13 +1,22 @@
 <?php
-$errores=["la contraseña deve tener mas de 8 caratres","una letra mayuscula","una letra minuscula","un signo de puntuación"];
-$colores=["red","red","red","red"];
+session_start();
+$color='<p style="';
+$errores="";
+$numeroCaracteres="la contraseña deve tener mas de 8 caratres </p>";
+$letras=" una letra mayuscula";
+$letras=" una letra ";
+$rojo='color:red">';
+$berde='color:green">';
 $texto=$_REQUEST["texto"] ?? "";
 
+
+
+
 if($texto!=""){
-    echo($texto);
-    die();
-    if(strlen($q)>8){
-        array_push($colores,"gren");
-       
+    if(strlen($texto)<8){
+        $errores.=$color.$rojo.$numeroCaracteres;   
+    }else{
+          $errores.=$color.$berde.$numeroCaracteres; 
     }
+    echo($errores);
 }

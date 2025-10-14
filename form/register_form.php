@@ -3,6 +3,9 @@
    if (isset($_SESSION['errores'])) {
     $errores=$_SESSION['errores'];
    }
+   if (isset($_SESSION['color'])) {
+    $color=$_SESSION['color'];
+   }
 ?>
 
 <!DOCTYPE html>
@@ -14,26 +17,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
 
 </head>
-<script>
 
-  function errores(str) {
-  if (str.length == 0) {
-    document.getElementById("password").innerHTML = "";
-    return;
-  } else {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("password").innerHTML = this.responseText;
-      }
-    };
-    xmlhttp.open("GET", "comprueba.php?texto=" + str, true);
-    console.log(str);
-    xmlhttp.send();
-  }
-}
-
-</script>
 
 <body class="form-page-body">
     
@@ -54,13 +38,7 @@
         </div>
         <div class="formDiv">
             <label for="password">Contraseña: </label>
-                <?php
-                for ($i=0; $i < count($errores) ; $i++) { 
-                    echo("<p style='color: {$colores[$i]}' id='passwordError{$i}' > {$errores[$i]}</p>");
-                }
-
-               ?>
-            
+                <div id='passwordError'></div>
             <input type="text" name="password" id="password" onkeyup="errores(this.value)" />
         </div>
         <div class="formDiv">
@@ -83,5 +61,26 @@
     </form>
     
 </body>
+<script>
+
+  function errores(str) {
+  if (str.length === 0) {
+    document.getElementById("passwordError").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(str);
+        document.getElementById("passwordError").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "comprueba.php?texto=" + str, true);
+    
+    xmlhttp.send();
+  }
+}
+
+</script>
 
 </html>
