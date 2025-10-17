@@ -19,6 +19,19 @@ require 'logic/dashboard_logic.php';
             <nav>
                 <a href="form/juegos_form.php" class="btn-header">Añadir Juego</a>
                 <a href="logout.php" class="btn-header">Cerrar Sesión</a>
+                <?php 
+                    $src="uploads/usuario.jpg";
+                    if ($_SESSION['imagen_perfil']!=null) {           
+                        $src=$_SESSION['imagen_perfil'];
+                    }
+                  
+
+                 ?>
+                 
+                <img src="<?php echo($src) ?>" alt="usuario">;
+              
+               
+                
             </nav>
         </div>
     </header>

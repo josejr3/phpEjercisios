@@ -13,6 +13,17 @@ try {
     $stmt = $conn->query($sql);
     $juegos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    
 } catch (PDOException $e) {
     die("Error al consultar la tabla de juegos: " . $e->getMessage());
+}
+try {
+    $sql_imagen = "SELECT imagen_perfil FROM usuarios WHERE id_usuario=:id";  
+    $stmt_imagen = $conn->prepare($sql_imagen);
+    $stmt_imagen -> bindParam(':id',$_SESSION['user_id']);
+    $stmt_imagen -> execute();
+    $imagen_perfil = $stmt_imagen->fetch(PDO::FETCH_ASSOC);  
+    $_SESSION['imagen_perfil']=$imagen_perfil;
+} catch (PDOException $e) {
+    die("Error al consultar la la iamgen del usuario: " . $e->getMessage());
 }
