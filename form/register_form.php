@@ -21,13 +21,18 @@
 
 <body class="form-page-body">
     
-    <form action="../logic/register_logic.php" method="post" class="form">
+    <form action="../logic/register_logic.php" method="post" enctype="multipart/form-data" class="form">
         <h2>Registro</h2>
         <div class="formDiv">
             <label for="user">Nombre de usuario: </label>
              <p class="error"><?php echo $errores['errorUser'] ?? '&nbsp;'; ?></p>              
             <input type="text" name="user" id="user" 
                 value="<?php echo isset($_SESSION['user']) && !isset($errores['errorUser']) ? $_SESSION['user'] : ''; ?>"/>
+        </div>
+
+        <div class="formDiv">
+          <label for="imagen_perfil" style="">Imagen (opcional):</label>
+          <input type="file" name="imagen_perfil" id="imagen_perfil" accept="image/*">
         </div>
    
         <div class="formDiv">
@@ -84,3 +89,4 @@
 </script>
 
 </html>
+
