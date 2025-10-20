@@ -1,5 +1,5 @@
 <?php
-require 'logic/dashboard_logic.php';
+    require 'logic/dashboard_logic.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,16 +19,17 @@ require 'logic/dashboard_logic.php';
             <nav>
                 <a href="form/juegos_form.php" class="btn-header">Añadir Juego</a>
                 <a href="logout.php" class="btn-header">Cerrar Sesión</a>
+                <a href="editar_perfil.php" class="btn-header">Editar Perfil</a>
                 <?php 
                     $src="uploads/usuario.jpg";
-                    if ($_SESSION['imagen_perfil']!=null) {           
-                        $src=$_SESSION['imagen_perfil'];
+                    if ($imagen_perfil!=null) {           
+                        $src=$imagen_perfil;
                     }
                   
 
                  ?>
                  
-                <img src="<?php echo($src) ?>" alt="usuario">;
+                <img id="perfil_dashboar" src="<?php echo($src) ?>" alt="usuario"></img>
               
                
                 

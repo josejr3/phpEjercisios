@@ -23,7 +23,7 @@ try {
     $stmt_imagen -> bindParam(':id',$_SESSION['user_id']);
     $stmt_imagen -> execute();
     $imagen_perfil = $stmt_imagen->fetch(PDO::FETCH_ASSOC);  
-    $_SESSION['imagen_perfil']=$imagen_perfil;
+    $imagen_perfil=$imagen_perfil['imagen_perfil'];
 } catch (PDOException $e) {
     die("Error al consultar la la iamgen del usuario: " . $e->getMessage());
 }

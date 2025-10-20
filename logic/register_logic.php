@@ -38,14 +38,14 @@ if (!empty($_POST)) {
 
         move_uploaded_file($archivo['tmp_name'], '../uploads/' . $nombre_archivo);
 
-        $ruta_caratula_db = 'uploads/' . $nombre_archivo;
+        $imagen_perfil = 'uploads/' . $nombre_archivo;
     }
 
     if (count($errores)===0) {
         $hash=password_hash($_SESSION['password'],PASSWORD_BCRYPT);
         $smt =$conn->prepare("INSERT INTO usuarios (username,password_hash,email,imagen_perfil) values(:username,:password_hash,:email,:imagen_perfil)");
         $smt->bindParam('username',$_SESSION['user']);
-        $smt->bindParam('imagen_perfil',$ruta_caratula_db);
+        $smt->bindParam('imagen_perfil',$imagen_perfil);
         $smt->bindParam('password_hash',$hash);
         $smt->bindParam('email',$_SESSION['email']);
         try {
@@ -53,6 +53,7 @@ if (!empty($_POST)) {
         } catch ( PDOException $e) {
                       
             if ($e->getCode()==23000) {
+                echo $e->getMessage();
                 $errores['errorEmail'] = "El email ya esta registrado</br>";
             
             }else{
