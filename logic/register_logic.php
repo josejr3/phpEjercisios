@@ -30,11 +30,22 @@ if (!empty($_POST)) {
     if ( !filter_var($_SESSION['email'], FILTER_VALIDATE_EMAIL)) 
         $errores['errorEmail'] = "El email no es válido  </br>";
 
+    if (isset($_FILES['imagen_perfil']) && $_FILES['imagen_perfil']['error'] === UPLOAD_ERR_OK) {
+
+        $archivo = $_FILES['imagen_perfil'];
+        $extension_archivo = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+        $nombre_archivo = 'imagen_perfil_' . uniqid() . '.' . $extension_archivo;
+
+        move_uploaded_file($archivo['tmp_name'], '../uploads/' . $nombre_archivo);
+
+        $imagen_perfil = 'uploads/' . $nombre_archivo;
+    }
 
     if (count($errores)===0) {
         $hash=password_hash($_SESSION['password'],PASSWORD_BCRYPT);
-        $smt =$conn->prepare("INSERT INTO usuarios (username,password_hash,email) values(:username,:password_hash,:email)");
+        $smt =$conn->prepare("INSERT INTO usuarios (username,password_hash,email,imagen_perfil) values(:username,:password_hash,:email,:imagen_perfil)");
         $smt->bindParam('username',$_SESSION['user']);
+        $smt->bindParam('imagen_perfil',$imagen_perfil);
         $smt->bindParam('password_hash',$hash);
         $smt->bindParam('email',$_SESSION['email']);
         try {
@@ -42,6 +53,7 @@ if (!empty($_POST)) {
         } catch ( PDOException $e) {
                       
             if ($e->getCode()==23000) {
+                echo $e->getMessage();
                 $errores['errorEmail'] = "El email ya esta registrado</br>";
             
             }else{

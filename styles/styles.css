@@ -4,6 +4,10 @@ body {
     margin: 0;
 
 }
+ 
+#perfil_dashboar{
+    width:78px;
+}
 
 .form-page-body {
     display: flex;
@@ -39,21 +43,23 @@ input, textarea, select {
 }
 
 button, .btn-header {
+    height: 18px;
     display: inline-block;
     padding: 10px 15px;
-    background: #4f46e5;
+    background: #4e46e5e4;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
-    transition: background-color 0.2s; 
+    transition: background-color 0.5s;
+    min-width:99px; 
 }
 
-button {
-    width: 100%;
-}
+form button{ height: 33px;}
+
+button {width: 100%;}
 
 button:hover, .btn-header:hover {
     background: #4338ca;
@@ -103,6 +109,7 @@ button:hover, .btn-header:hover {
 }
 
 .header-content nav {
+    align-items:center;
     display: flex;
     gap: 10px;
 }
@@ -260,3 +267,12 @@ button:hover, .btn-header:hover {
 .details-actions .btn-delete:hover {
     background-color: #dc2626;
 }
+.formDiv #passwordError{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px
+}
+.formDiv #passwordError p{
+   margin: 5px;
+}
+
