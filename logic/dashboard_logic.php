@@ -8,9 +8,24 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
 }
 
 $juegos = [];
+
+$mostraMisJuegos=$_GET["mostraMisJuegos"] ?? null;
+
+if($mostraMisJuegos){
+     $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen FROM juegos WHERE id_usuario_creador = :id";
+     $stmt = $conn->prepare($sql);
+     $stmt ->bindParam(':id',$_SESSION['user_id']);
+     $stmt ->execute();
+
+}else{
+     $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen FROM juegos";
+     $stmt = $conn->query($sql);
+     $stmt ->execute();
+}
+
 try {
-    $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen FROM juegos";
-    $stmt = $conn->query($sql);
+    
+
     $juegos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     
@@ -27,3 +42,5 @@ try {
 } catch (PDOException $e) {
     die("Error al consultar la la iamgen del usuario: " . $e->getMessage());
 }
+
+

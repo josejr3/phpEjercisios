@@ -20,6 +20,7 @@
                 <a href="form/juegos_form.php" class="btn-header">Añadir Juego</a>
                 <a href="logout.php" class="btn-header">Cerrar Sesión</a>
                 <a href="editar_perfil.php" class="btn-header">Editar Perfil</a>
+                <a href="?mostraMisJuegos=true" class="btn-header">Mis Juegos</a>
                 <?php 
                     $src="uploads/usuario.jpg";
                     if ($imagen_perfil!=null) {           
@@ -29,7 +30,7 @@
 
                  ?>
                  
-                <img id="perfil_dashboar" src="<?php echo($src) ?>" alt="usuario"></img>
+             <img id="perfil_dashboar" src="<?php echo($src) ?>" alt="usuario"></img>
               
                
                 
@@ -64,5 +65,6 @@
     </main>
 
 </body>
+
 
 </html>
