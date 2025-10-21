@@ -19,7 +19,7 @@
             <nav>
                 <a href="form/juegos_form.php" class="btn-header">Añadir Juego</a>
                 <a href="logout.php" class="btn-header">Cerrar Sesión</a>
-                <a href="editar_perfil.php" class="btn-header">Editar Perfil</a>
+                <a href="form/editar_perfil.php" class="btn-header">Editar Perfil</a>
                 <a href="?mostraMisJuegos=true" class="btn-header">Mis Juegos</a>
                 <?php 
                     $src="uploads/usuario.jpg";
