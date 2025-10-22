@@ -79,8 +79,8 @@ if (isset($_POST['guardar'])) {
             exit();
         } catch (Exception $e) {
             $conn->rollBack();    
-            print_r($e->getMessage());
-            die();
+            //print_r($e->getMessage());
+            //die();
             header("Location: ../form/juegos_form.php");
             exit();
         }

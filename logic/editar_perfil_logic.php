@@ -19,15 +19,14 @@ try {
 }
 
 if (!empty($_POST)) {
-    $errores = array();
+    $erroresDeeditarperfil = array();
 
-    $_SESSION['user']=$_POST['user'];
-    $_SESSION['password']=$_POST['password'];
-    $_SESSION['password2']=$_POST['password2'];
-    $_SESSION['email']=$_POST['email'];
+    //$_SESSION['userPerfil']=$_POST['user'];
+    //$_SESSION['passwordPerfil']=$_POST['password'];
+    //$_SESSION['password2Perfil']=$_POST['password2'];
 
     if ( empty($_SESSION['user']) ) 
-        $errores['errorUser'] = "El nombre de usuario no puede estar vacío  </br>";
+        $erroresDeeditarperfil['errorUser'] = "El nombre de usuario no puede estar vacío  </br>";
 
     if (isset($_FILES['imagen_perfil']) && $_FILES['imagen_perfil']['error'] === UPLOAD_ERR_OK) {
 
@@ -37,9 +36,20 @@ if (!empty($_POST)) {
 
         move_uploaded_file($archivo['tmp_name'], '../uploads/' . $nombre_archivo);
         $imagen_perfil = 'uploads/' . $nombre_archivo;
+    }else{
+        $imagen_perfil=null;
     }
-     if (count($errores)===0) {
-
+     if (count($erroresDeeditarperfil)===0) {
+        try {
+            $stmt=$conn ->prepare("UPDATE usuarios SET username=:nuevoNombre, imagen_perfil=:imagen WHERE id_usuario=:userid");
+            $stmt ->bindParam(":nuevoNombre", $_POST['user']);
+            $stmt ->bindParam(":imagen",$imagen_perfil);
+            $stmt ->bindParam(":userid",$_SESSION['user_id']);
+            $stmt -> execute();
+            header("location:../dashboard.php");
+        } catch (PDOException $e) {
+           echo($e->getMessage());
+        }     
      }
 
      

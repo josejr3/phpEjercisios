@@ -56,6 +56,7 @@ require 'detalles_juego_logic.php';
                         <a href="<?php echo $juego['url_juego']; ?>" target="_blank">Visitar sitio web</a>
                     </div>
                 <?php endif; ?>
+                <p>Vistas: <?php echo($juego['vistas']+1); ?></p>
 
                 <div class="details-actions">
                     <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $juego['id_usuario_creador']): ?>

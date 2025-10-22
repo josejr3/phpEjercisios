@@ -53,6 +53,7 @@
                     <div class="game-info">
                         <h3><?php echo htmlspecialchars($juego['titulo']); ?></h3>
                         <p><?php echo htmlspecialchars($juego['anio_lanzamiento']); ?></p>
+                        <p>Vistas: <?php echo($juego['vistas']); ?></p>
                     </div>
                 </a>
             <?php endforeach; ?>

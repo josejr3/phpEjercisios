@@ -10,7 +10,7 @@ function obtenerDetallesJuego($id_juego, $conn) {
     try {
         $sql = "SELECT 
                     j.id_usuario_creador, j.titulo, j.descripcion, j.anio_lanzamiento, 
-                    j.caratula_imagen, j.url_juego, p.nombre_plataforma
+                    j.caratula_imagen, j.url_juego, j.vistas, p.nombre_plataforma
                 FROM juegos AS j
                 JOIN juegos_plataformas AS jp ON j.id_juego = jp.id_juego
                 JOIN plataformas AS p ON jp.id_plataforma = p.id_plataforma
@@ -23,6 +23,9 @@ function obtenerDetallesJuego($id_juego, $conn) {
         return $stmt->fetch(PDO::FETCH_ASSOC);
 
     } catch (PDOException $e) {
+        echo ($e->getMessage());
+        //die();
         return false;
     }
 }
+

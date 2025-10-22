@@ -7,17 +7,21 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
     header("location: ../index.php");
     exit();
 }
-
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("location: ../dashboard.php");
-    exit();
-}
 $id_juego = $_GET['id'];
 
 $juego = obtenerDetallesJuego($id_juego, $conn);
 
 if (!$juego) {
-    header("location: ../dashboard.php?error=notfound");
+    header("location: ../dashboard.php");
+    echo($juego);
     exit();
+}
+
+try {
+    $smt = $conn ->prepare("UPDATE juegos SET vistas= vistas+1 WHERE id_juego=:id");
+    $smt ->bindParam("id",$_GET['id']);
+    $smt -> execute();
+} catch (PDOException $e) {
+    echo($e->getMessage());
 }
 

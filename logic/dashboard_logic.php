@@ -12,20 +12,17 @@ $juegos = [];
 $mostraMisJuegos=$_GET["mostraMisJuegos"] ?? null;
 
 if($mostraMisJuegos){
-     $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen FROM juegos WHERE id_usuario_creador = :id";
+     $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen ,vistas FROM juegos WHERE id_usuario_creador = :id";
      $stmt = $conn->prepare($sql);
      $stmt ->bindParam(':id',$_SESSION['user_id']);
-     $stmt ->execute();
-
 }else{
-     $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen FROM juegos";
+     $sql = "SELECT id_juego, titulo, anio_lanzamiento, caratula_imagen,vistas FROM juegos";
      $stmt = $conn->query($sql);
-     $stmt ->execute();
 }
 
 try {
     
-
+    $stmt ->execute();
     $juegos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     

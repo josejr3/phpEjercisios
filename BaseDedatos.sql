@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS `juegos` (
   `caratula_imagen` varchar(255) DEFAULT NULL,
   `url_juego` varchar(255) DEFAULT NULL,
   `id_usuario_creador` int(11) NOT NULL,
+  `vistas` int NOT null,
   PRIMARY KEY (`id_juego`),
   KEY `id_usuario_creador` (`id_usuario_creador`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -1,5 +1,5 @@
 <?php
-  require '../logic/editar_perfil_logic.php';
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,19 +14,21 @@
 
 <body class="form-page-body">
     
-    <form action="../logic/register_logic.php" method="post" enctype="multipart/form-data" class="form">
+    <form action="../logic/editar_perfil_logic.php" method="post" enctype="multipart/form-data" class="form">
         <h2>Editar datos</h2>       
         <div class="formDiv">
             <label for="user">Nombre de usuario: </label>
-             <p class="error"><?php echo $errores['errorUser'] ?? '&nbsp;'; ?></p>              
-            <input type="text" name="user" id="user" 
-                value="<?php echo isset($_SESSION['user']) && !isset($errores['errorUser']) ? $_SESSION['user'] : ''; ?>"/>
+             <p class="error"><?php echo $errores['errorUserPerfil'] ?? '&nbsp;'; ?></p>              
+            <input type="text" name="user" id="userPerfil" 
+                value="<?php echo isset($_SESSION['userPerfil']) && !isset($errores['errorUserPerfil']) ? $_SESSION['userPerfil'] : ''; ?>"/>
         </div>
             <?php 
-                    $src="../uploads/usuario.jpg";
-                    if ($imagen_perfil!=null) {           
-                        $src=$imagen_perfil;
-                    }
+                    $src="uploads/usuario.jpg";
+                    if(isset($imagen_perfil)){
+                      if ($imagen_perfil!=null) {           
+                          $src=$imagen_perfil;
+                      }
+                  }
                  ?>   
              <img id="perfil_dashboar" src="../<?php echo($src) ?>" alt="usuario"></img>
         
@@ -36,11 +38,11 @@
         </div>
  
         <div class="formDiv">
-            <button type="submit" value="Registrarse" name="enviar">Editar</button>
+            <button type="submit" value="Registrarse" name="enviar">Enviar</button>
         </div>
       <?php
-        if (isset($_SESSION['errores'])) {
-         $_SESSION['errores']=null;
+        if (isset($_SESSION['erroresDeeditarperfil'])) {
+         $_SESSION['erroresDeeditarperfil']=null;
         }
       ?>
         
