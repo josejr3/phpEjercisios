@@ -9,7 +9,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
 }
 $id_juego = $_GET['id'];
 
-$juego = obtenerDetallesJuego($id_juego, $conn);
+$juego = obtenerDetallesJuego($id_juego, $_SESSION['user_id'], $conn);
 
 if (!$juego) {
     header("location: ../dashboard.php");

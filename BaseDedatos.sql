@@ -79,6 +79,17 @@ ALTER TABLE `juegos_plataformas`
   ADD CONSTRAINT `juegos_plataformas_ibfk_1` FOREIGN KEY (`id_juego`) REFERENCES `juegos` (`id_juego`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `juegos_plataformas_ibfk_2` FOREIGN KEY (`id_plataforma`) REFERENCES `plataformas` (`id_plataforma`) ON DELETE CASCADE ON UPDATE CASCADE;
 USE `phpmyadmin`;
+
+CREATE TABLE IF NOT EXISTS `votos_juegos` (
+  `id_usuario` int(11) NOT NULL,
+  `id_juego` int(11) NOT NULL,
+  `voto` VARCHAR(8) NOT NULL,
+  PRIMARY KEY (`id_usuario`, `id_juego`),
+  KEY `id_juego` (`id_juego`),
+  CONSTRAINT `votos_juegos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `votos_juegos_ibfk_2` FOREIGN KEY (`id_juego`) REFERENCES `juegos` (`id_juego`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

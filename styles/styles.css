@@ -115,6 +115,7 @@ button:hover, .btn-header:hover {
 }
 
 
+
 .games-container, .details-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -276,3 +277,37 @@ button:hover, .btn-header:hover {
    margin: 5px;
 }
 
+.votos-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .btn-voto {
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 5px;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        .btn-voto:hover {
+            background-color: #f0f0f0;
+        }
+        .votos-puntuacion {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .btn-voto.activo {
+            transform: scale(1.2);
+        }
+        .btn-like.activo {
+            color: #4f46e5;
+        }
+        .btn-dislike.activo {
+            color: #ef4444;
+        }
+    
+        
