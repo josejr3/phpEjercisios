@@ -70,13 +70,49 @@ require 'detalles_juego_logic.php';
                             <input type="hidden" name="id_juego" value="<?php echo $id_juego; ?>">
                             <button type="submit" class="btn-delete">Eliminar</button>
                         </form>
+                        
 
                     <?php endif; ?>
+
+                    <div class="votos-container">
+                            <button type="button" class="btn-voto" id="like" onclick="votar('like')">like</button>
+                            <button type="button" class="btn-voto" id="dislike"  onclick="votar('dislike')">dislike</button>
+                            <p id="botos"></p>
+                    </div>
+
                 </div>
             </div>
         </div>
     </main>
 
 </body>
+<script>
+  function votar(str) {
+ if (str == "like") {
+    console.log(<?php echo($id_juego) ?>);
+        document.getElementById("like").classList.add('activo');
+        document.getElementById("dislike").classList.remove('activo');
+    } else {
+        document.getElementById("dislike").classList.add('activo');
+        document.getElementById("like").classList.remove('activo');
+    }
+   let xmlhttp = new XMLHttpRequest();
+   xmlhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4) {   
+            documet.getElementById("botos").innerHTML = this.responseText;;     
+            console.log("Status de la petición: " + this.status);
+            console.log("Respuesta del servidor: " + this.responseText); 
+        }
+  
+  }
+
+   xmlhttp.open("GET", "votar.php?voto=" + str+"&id_juego="+<?php echo($id_juego) ?>, true);
+   
+   xmlhttp.send();
+}
+
+
+</script>
 
 </html>

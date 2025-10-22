@@ -255,6 +255,8 @@ button:hover, .btn-header:hover {
     border-top: 1px solid #eee;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .details-actions .btn-edit {
@@ -276,14 +278,20 @@ button:hover, .btn-header:hover {
 .formDiv #passwordError p{
    margin: 5px;
 }
-
+#votos{
+    width: 20px;
+    height: 20px;
+}
 .votos-container {
             margin-top: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
+            background-color: #4b4646;
+            border-radius: 10px; 
+            height: 40px;      
         }
-        .btn-voto {
+        .btn-voto {         
             font-size: 24px;
             cursor: pointer;
             border: none;
@@ -300,14 +308,10 @@ button:hover, .btn-header:hover {
             font-weight: bold;
             color: #333;
         }
-        .btn-voto.activo {
+        .activo {
             transform: scale(1.2);
+            background-color: #298ac2;
         }
-        .btn-like.activo {
-            color: #4f46e5;
-        }
-        .btn-dislike.activo {
-            color: #ef4444;
-        }
+       
     
         

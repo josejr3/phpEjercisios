@@ -11,8 +11,6 @@ $berde='color:green">';
 $texto=$_REQUEST["texto"] ?? "";
 
 
-
-
 if($texto!=""){
     if(strlen($texto)<8){
         $errores.=$color.$rojo.$numeroCaracteres;   
