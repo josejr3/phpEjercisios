@@ -5,7 +5,7 @@
  * @param int $id_juego El ID del juego a buscar.
  *  @param int $id_usuario El ID del usuario que está logeado.
  * @param PDO $conn La variable de conexión a la base de datos.
- * @return array|false Los datos del juego si se encuentra, o false si no.
+ * @return array Los datos del juego si se encuentra, o false si no.
  */
 function obtenerDetallesJuego($id_juego, $id_usuario, $conn) {
     try {
@@ -24,35 +24,49 @@ function obtenerDetallesJuego($id_juego, $id_usuario, $conn) {
         $juego = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$juego) {
-            return false;
+            return $juego;
         }
+        $voto_usuario=optenerBotoUsuario($conn,$id_juego, $id_usuario);
+        $juego['voto_usuario'] = $voto_usuario ? $voto_usuario : null;
 
-        $juego['puntuacion'] = obtenerPuntuacionJuego($id_juego, $conn);   
+        $puntuacion = obtenerPuntuacionJuego( $id_juego, $conn);
+        $juego['likes']=$puntuacion[0];
+        $juego['dislikes']=$puntuacion[1];      
 
-        $sql_voto_usr = "SELECT voto FROM votos_juegos WHERE id_juego = :id_juego AND id_usuario = :id_usuario";
+        return $juego;
+
+    } catch (PDOException $e) {
+        echo ($e->getMessage());
+        return $juego;
+    }
+}
+/**
+ * Summary of optenerBotoUsuario
+ * @param PDO $conn 
+ * @param string $id_juego
+ * @param string $id_usuario
+ * @return string
+ */
+function optenerBotoUsuario($conn,$id_juego,$id_usuario){
+
+    $sql_voto_usr = "SELECT voto FROM votos_juegos WHERE id_juego = :id_juego AND id_usuario = :id_usuario";
         $stmt_voto_usr = $conn->prepare($sql_voto_usr);
         $stmt_voto_usr->bindParam(':id_juego', $id_juego, PDO::PARAM_INT);
         $stmt_voto_usr->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
         $stmt_voto_usr->execute();
         
         $voto_usuario = $stmt_voto_usr->fetchColumn();
-        $juego['voto_usuario'] = $voto_usuario ? $voto_usuario : null;
 
-        return $juego;
+    return $voto_usuario;
 
-    } catch (PDOException $e) {
-        echo ($e->getMessage());
-        //die();
-        return false;
-    }
 }
 
 /**
- * Calcula la puntuación total (likes - dislikes) para un juego.
+ * Calcula la puntuación total (likes y dislikes) para un juego.
  *
  * @param int $id_juego El ID del juego a calcular.
- * @param PDO $conn El objeto de conexión a la base de datos.
- * @return int La puntuación final.
+ * @param PDO $conn La variable de conexión a la base de datos.
+ * @return array Un array con la puntuaón o con el error de la base de datos  
  */
 function obtenerPuntuacionJuego($id_juego, $conn) {
     try {
@@ -68,9 +82,9 @@ function obtenerPuntuacionJuego($id_juego, $conn) {
         $stmt_dislikes->execute();
         $total_dislikes = $stmt_dislikes->fetchColumn();
 
-        return (int)$total_likes - (int)$total_dislikes;
+        return [$total_likes ,$total_dislikes];
 
     } catch (PDOException $e) {
-        return 0;
+        return [$e->getMessage()];
     }
 }

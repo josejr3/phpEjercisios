@@ -11,7 +11,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
 if (isset($_POST['id_juego']) && is_numeric($_POST['id_juego'])) {
     $id_juego = $_POST['id_juego'];
 
-    $juego_a_editar = obtenerDetallesJuego($id_juego, $conn);
+    $juego_a_editar = obtenerDetallesJuego($id_juego, $_SESSION['user_id'],$conn);
 
     if ($juego_a_editar) {
         

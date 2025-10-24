@@ -12,9 +12,9 @@ $id_juego = $_GET['id'];
 $juego = obtenerDetallesJuego($id_juego, $_SESSION['user_id'], $conn);
 
 if (!$juego) {
-    header("location: ../dashboard.php");
-    echo($juego);
-    exit();
+    //header("location: ../dashboard.php");
+    echo(var_dump($juego));
+    die();
 }
 
 try {

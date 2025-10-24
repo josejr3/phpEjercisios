@@ -1,5 +1,5 @@
 <?php
-require 'detalles_juego_logic.php';
+    require 'detalles_juego_logic.php';
 ?>
 
 <!DOCTYPE html>
@@ -75,10 +75,14 @@ require 'detalles_juego_logic.php';
                     <?php endif; ?>
 
                     <div class="votos-container">
-                            <button type="button" class="btn-voto" id="like" onclick="votar('like')">like</button>
-                            <button type="button" class="btn-voto" id="dislike"  onclick="votar('dislike')">dislike</button>
-                            <p id="botos"></p>
-                    </div>
+                         <div class="votos-container">
+                            <button type="button" class="btn-voto <?php if($juego['voto_usuario']=="like") echo("activo")?>" id="like" onclick="votar('like')"></button>
+                            <p id="likes"><?php echo($juego['likes']) ?></p>
+                            <button type="button" class="btn-voto <?php if($juego['voto_usuario']=="dislike") echo("activo")?>" id="dislike" onclick="votar('dislike')"></button>
+                            <p id="dislikes"><?php echo($juego['dislikes']) ?></p>
+                        </div>
+                                                
+                     </div>
 
                 </div>
             </div>
@@ -87,22 +91,24 @@ require 'detalles_juego_logic.php';
 
 </body>
 <script>
+    let Puede_botar= <?php echo ($juego['voto_usuario']===null)?>;
   function votar(str) {
- if (str == "like") {
-    console.log(<?php echo($id_juego) ?>);
-        document.getElementById("like").classList.add('activo');
-        document.getElementById("dislike").classList.remove('activo');
-    } else {
-        document.getElementById("dislike").classList.add('activo');
-        document.getElementById("like").classList.remove('activo');
+    if(Puede_botar){ 
+        if (str == "like") {
+            document.getElementById("like").classList.add('activo');
+        } else {
+            document.getElementById("dislike").classList.add('activo');
+        }
     }
-   let xmlhttp = new XMLHttpRequest();
-   xmlhttp.onreadystatechange = function() {
+ 
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
 
-        if (this.readyState == 4) {   
-            documet.getElementById("botos").innerHTML = this.responseText;;     
-            console.log("Status de la petición: " + this.status);
-            console.log("Respuesta del servidor: " + this.responseText); 
+        if (this.readyState == 4 && this.status == 200) {
+            let puntunacion= JSON.parse(this.responseText)   
+            document.getElementById("likes").innerHTML =puntunacion[0];
+            document.getElementById("dislikes").innerHTML =puntunacion[1];
+            Puede_botar=false;
         }
   
   }
