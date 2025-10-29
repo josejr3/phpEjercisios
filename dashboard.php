@@ -26,8 +26,6 @@
                     if ($imagen_perfil!=null) {           
                         $src=$imagen_perfil;
                     }
-                  
-
                  ?>
                  
              <img id="perfil_dashboar" src="<?php echo($src) ?>" alt="usuario"></img>

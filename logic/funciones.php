@@ -3,7 +3,7 @@
  * Obtiene todos los detalles de un juego específico desde la base de datos.
  *
  * @param int $id_juego El ID del juego a buscar.
- *  @param int $id_usuario El ID del usuario que está logeado.
+ * @param int $id_usuario El ID del usuario que está logeado.
  * @param PDO $conn La variable de conexión a la base de datos.
  * @return array Los datos del juego si se encuentra, o false si no.
  */
